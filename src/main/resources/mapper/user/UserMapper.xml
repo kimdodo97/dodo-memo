@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kimdodo.ssgboard.user.infrastructure.UserMapper">
+
+    <resultMap id="userMap" type="UserEntity">
+        <id property="id" column="post_id"/>
+        <result property="title" column="title"/>
+        <result property="content" column="content"/>
+        <result property="createAt" column="create_at"/>
+    </resultMap>
+
+    <select id="findAll" resultMap="userMap">
+        SELECT *
+        FROM user
+    </select>
+
+    <select id="findById" parameterType="java.lang.Long" resultMap="userMap">
+        SELECT * FROM user WHERE user_id = #{id}
+    </select>
+
+    <select id="findByEmail" parameterType="java.lang.String" resultMap="userMap">
+        SELECT * FROM user WHERE email = #{email}
+    </select>
+
+
+    <select id="findByEmailAndPassword" parameterType="java.lang.String" resultMap="userMap">
+        SELECT * FROM user WHERE email = #{email} AND password = #{password}
+    </select>
+
+    <insert id="save" parameterType="Post" useGeneratedKeys="true" keyProperty="id">
+
+    </insert>
+
+    <update id="update" parameterType="Post">
+        UPDATE POST
+        S
+    </update>
+
+    <delete id="delete">
+    </delete>
+
+    <delete id="deleteAll">
+    </delete>
+
+
+</mapper>

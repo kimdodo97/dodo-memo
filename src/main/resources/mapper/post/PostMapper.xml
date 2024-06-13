@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kimdodo.ssgboard.post.infrastructure.PostMapper">
+
+    <resultMap id="postResultMap" type="PostEntity">
+        <id property="id" column="post_id"/>
+        <result property="title" column="title"/>
+        <result property="content" column="content"/>
+        <result property="createAt" column="create_at"/>
+    </resultMap>
+
+    <select id="findAll" resultMap="postResultMap">
+        SELECT *
+        FROM post
+    </select>
+
+    <select id="findById" parameterType="java.lang.Long" resultMap="postResultMap">
+        SELECT * FROM post WHERE post_id = #{id}
+    </select>
+
+    <select id="findByTitle" parameterType="java.lang.String" resultMap="postResultMap">
+        SELECT * FROM post WHERE title = #{title}
+    </select>
+
+    <select id="findByPage" resultMap="postResultMap">
+        SELECT *
+        FROM post
+        ORDER BY CREATE_AT
+        <choose>
+            <when test="asc">
+                ASC
+            </when>
+            <otherwise>
+                DESC
+            </otherwise>
+        </choose>
+        LIMIT #{size} OFFSET #{offset}
+    </select>
+
+    <insert id="save" parameterType="Post" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO post(title, content,create_at) VALUES(#{title}, #{content},#{createAt})
+    </insert>
+
+    <update id="update" parameterType="Post">
+        UPDATE POST
+        SET title=#{title},
+            content=#{content}
+        WHERE post_id = #{id}
+    </update>
+
+    <delete id="delete">
+        delete from POST where post_id = #{id}
+    </delete>
+
+    <delete id="deleteAll">
+        delete from POST
+    </delete>
+
+
+</mapper>
