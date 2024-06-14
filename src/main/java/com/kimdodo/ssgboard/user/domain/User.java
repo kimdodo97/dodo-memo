@@ -6,7 +6,7 @@ import com.kimdodo.ssgboard.common.service.port.DateHolder;
 import lombok.Builder;
 import lombok.Getter;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 
 @Getter
 public class User {
@@ -16,14 +16,14 @@ public class User {
     private String name;
     private String nickname;
     private Gender gender;
-    private LocalDateTime birthDate;
+    private Date birthDate;
     private String telNumber;
     private Address address;
-    private LocalDateTime createAt;
-    private LocalDateTime lastLoginAt;
+    private Date createAt;
+    private Date lastLoginAt;
     private String profileImage;
     @Builder
-    public User(Long id, String email, String password, String name, String nickname, Gender gender, LocalDateTime birthDate, String telNumber, Address address, LocalDateTime createAt, LocalDateTime lastLoginAt, String profileImage) {
+    public User(Long id, String email, String password, String name, String nickname, Gender gender, Date birthDate, String telNumber, Address address, Date createAt, Date lastLoginAt, String profileImage) {
         this.id = id;
         this.email = email;
         this.password = password;

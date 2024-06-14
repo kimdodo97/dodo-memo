@@ -4,6 +4,7 @@ import lombok.Builder;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Getter
 public class UserCreate {
@@ -12,14 +13,14 @@ public class UserCreate {
     private String name;
     private String nickname;
     private String gender;
-    private LocalDateTime birthDate;
+    private Date birthDate;
     private String telNumber;
     private String zipcode;
     private String mainAddress;
     private String detailAddress;
 
     @Builder
-    public UserCreate(String email, String password, String name, String nickname, String gender, LocalDateTime birthDate, String telNumber, String zipcode, String mainAddress, String detailAddress) {
+    public UserCreate(String email, String password, String name, String nickname, String gender, Date birthDate, String telNumber, String zipcode, String mainAddress, String detailAddress) {
         this.email = email;
         this.password = password;
         this.name = name;

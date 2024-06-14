@@ -4,17 +4,17 @@ import com.kimdodo.ssgboard.post.domain.Post;
 import lombok.Builder;
 import lombok.Getter;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 
 @Getter
 public class PostEntity {
     private final Long id;
     private final String title;
     private final String content;
-    private final LocalDateTime createAt;
+    private final Date createAt;
 
     @Builder
-    public PostEntity(Long id, String title, String content, LocalDateTime createAt) {
+    public PostEntity(Long id, String title, String content, Date createAt) {
         this.id = id;
         this.title = title;
         this.content = content;

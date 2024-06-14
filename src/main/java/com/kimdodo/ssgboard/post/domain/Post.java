@@ -4,17 +4,18 @@ import com.kimdodo.ssgboard.common.service.port.DateHolder;
 import lombok.Builder;
 import lombok.Getter;
 
-import java.time.LocalDateTime;
+import java.util.Date;
+
 
 @Getter
 public class Post {
     private Long id;
     private String title;
     private String content;
-    private LocalDateTime createAt;
+    private Date createAt;
 
     @Builder
-    public Post(Long id, String title, String content, LocalDateTime createAt) {
+    public Post(Long id, String title, String content, Date createAt) {
         this.id = id;
         this.title = title;
         this.content = content;

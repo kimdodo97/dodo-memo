@@ -1,5 +1,6 @@
 package com.kimdodo.ssgboard.post.infrastructure;
 
+import com.kimdodo.ssgboard.common.service.port.DateHolder;
 import com.kimdodo.ssgboard.post.domain.Post;
 import com.kimdodo.ssgboard.post.service.port.PostRepository;
 import org.assertj.core.api.Assertions;
@@ -17,7 +18,10 @@ import org.springframework.test.context.TestPropertySource;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.Duration;
+import java.time.Instant;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -39,7 +43,7 @@ class PostRepositoryImplTest {
     @DisplayName("Post 객체를 통해서 DB에 값을 저장 할 수 있다")
     void test1() throws Exception {
         //given
-        LocalDateTime createTime = LocalDateTime.of(2024,6,12,00,00);
+        Date createTime = Date.from(Instant.parse("2023-12-12T00:00:00Z"));
         Post post = Post.builder()
                 .title("제목")
                 .content("내용")
@@ -57,7 +61,7 @@ class PostRepositoryImplTest {
     @DisplayName("Post ID 를 통해서 게시물을 조회할 수 있다")
     void test2() throws Exception {
         //given
-        LocalDateTime createTime = LocalDateTime.of(2024,6,12,00,00);
+        Date createTime = Date.from(Instant.parse("2023-12-12T00:00:00Z"));
         PostEntity postEntity = PostEntity.builder()
                 .title("제목")
                 .content("내용")
@@ -77,7 +81,7 @@ class PostRepositoryImplTest {
     @DisplayName("저장된 게시물 수정이 가능하다")
     void test3() throws Exception {
         //given
-        LocalDateTime createTime = LocalDateTime.of(2024,6,12,00,00);
+        Date createTime = Date.from(Instant.parse("2023-12-12T00:00:00Z"));
         PostEntity postEntity = PostEntity.builder()
                 .title("제목")
                 .content("내용")
@@ -102,7 +106,7 @@ class PostRepositoryImplTest {
     @DisplayName("저장된 게시물은 삭제가 가능하다")
     void test4() throws Exception {
         //given
-        LocalDateTime createTime = LocalDateTime.of(2024,6,12,00,00);
+        Date createTime = Date.from(Instant.parse("2023-12-12T00:00:00Z"));
         PostEntity postEntity = PostEntity.builder()
                 .title("제목")
                 .content("내용")
@@ -123,7 +127,7 @@ class PostRepositoryImplTest {
     @DisplayName("저장된 게시물은 삭제가 가능하다")
     void test5() throws Exception {
         //given
-        LocalDateTime createTime = LocalDateTime.of(2024,6,12,00,00);
+        Date createTime = Date.from(Instant.parse("2023-12-12T00:00:00Z"));
         PostEntity postEntity = PostEntity.builder()
                 .title("제목")
                 .content("내용")
@@ -145,7 +149,7 @@ class PostRepositoryImplTest {
     void test6() throws Exception {
         //given
         for (int i = 0; i < 100; i++) {
-            LocalDateTime createTime = LocalDateTime.of(2024,6,12,00,00);
+            Date createTime = Date.from(Instant.parse("2023-12-12T00:00:00Z"));
             PostEntity postEntity = PostEntity.builder()
                     .title("제목" + i)
                     .content("내용" + i)
@@ -164,7 +168,7 @@ class PostRepositoryImplTest {
     void test7() throws Exception {
         //given
         for (int i = 1; i < 100; i++) {
-            LocalDateTime createTime = LocalDateTime.of(2024,6,12,00,00).plusDays((long) i);
+            Date createTime = Date.from(Instant.now());
             PostEntity postEntity = PostEntity.builder()
                     .title("제목" + i)
                     .content("내용" + i)
@@ -184,7 +188,7 @@ class PostRepositoryImplTest {
     void test8() throws Exception {
         //given
         for (int i = 1; i < 100; i++) {
-            LocalDateTime createTime = LocalDateTime.of(2024,6,12,00,00).plusDays((long) i);
+            Date createTime = Date.from(Instant.now());
             PostEntity postEntity = PostEntity.builder()
                     .title("제목" + i)
                     .content("내용" + i)

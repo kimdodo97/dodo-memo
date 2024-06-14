@@ -3,20 +3,21 @@ package com.kimdodo.ssgboard.mock;
 import com.kimdodo.ssgboard.common.service.port.DateHolder;
 import lombok.RequiredArgsConstructor;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
-@RequiredArgsConstructor
 public class TestDateHolder implements DateHolder {
-    private final LocalDateTime date;
+    private final Date date;
 
-    public TestDateHolder(String date) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        this.date = LocalDateTime.parse(date, formatter);
+    public TestDateHolder(Date date){
+        this.date = date;
     }
 
     @Override
-    public LocalDateTime getNow() {
+    public Date getNow() {
         return date;
     }
 }

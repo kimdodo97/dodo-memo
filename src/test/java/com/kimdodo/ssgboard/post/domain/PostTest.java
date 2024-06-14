@@ -6,13 +6,15 @@ import com.kimdodo.ssgboard.post.infrastructure.PostEntity;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.time.Instant;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class PostTest {
     private final DateHolder dateHolder
-            = new TestDateHolder(LocalDateTime.of(2024,6,12,0,0));
+            = new TestDateHolder(Date.from(Instant.parse("2023-12-12T00:00:00Z")));
     @Test
     @DisplayName("PostCreate 객체로 Post 생성이 가능하다")
     void test1() throws Exception {
@@ -26,7 +28,7 @@ class PostTest {
         //then
         assertEquals("제목",post.getTitle());
         assertEquals("내용",post.getContent());
-        assertEquals(LocalDateTime.of(2024,6,12,0,0),post.getCreateAt());
+        assertEquals(Date.from(Instant.parse("2023-12-12T00:00:00Z")),post.getCreateAt());
     }
 
     @Test
@@ -50,7 +52,7 @@ class PostTest {
         //then
         assertEquals("수정 제목",post.getTitle());
         assertEquals("수정 내용",post.getContent());
-        assertEquals(LocalDateTime.of(2024,6,12,0,0),post.getCreateAt());
+        assertEquals(Date.from(Instant.parse("2023-12-12T00:00:00Z")),post.getCreateAt());
     }
 
     @Test
@@ -74,7 +76,7 @@ class PostTest {
         assertEquals(1L,post.getId());
         assertEquals("제목",post.getTitle());
         assertEquals("수정 내용",post.getContent());
-        assertEquals(LocalDateTime.of(2024,6,12,0,0),post.getCreateAt());
+        assertEquals(Date.from(Instant.parse("2023-12-12T00:00:00Z")),post.getCreateAt());
     }
 
     @Test
@@ -94,7 +96,7 @@ class PostTest {
         assertEquals(1L,postResponse.getId());
         assertEquals("제목",postResponse.getTitle());
         assertEquals("내용",postResponse.getContent());
-        assertEquals(LocalDateTime.of(2024,6,12,0,0),postResponse.getCreateAt());
+        assertEquals(Date.from(Instant.parse("2023-12-12T00:00:00Z")),postResponse.getCreateAt());
     }
 }
 

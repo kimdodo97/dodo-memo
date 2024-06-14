@@ -5,11 +5,7 @@ import com.kimdodo.ssgboard.common.domain.embed.Gender;
 import com.kimdodo.ssgboard.user.domain.User;
 import lombok.Builder;
 import lombok.Getter;
-
-import java.time.LocalDateTime;
-
-import static org.apache.tomcat.jni.Buffer.address;
-import static org.apache.tomcat.jni.Buffer.create;
+import java.util.Date;
 
 @Getter
 public class UserEntity {
@@ -18,24 +14,24 @@ public class UserEntity {
     private String password;
     private String name;
     private String nickname;
-    private Gender gender;
-    private LocalDateTime birthDate;
+    private String gender;
+    private Date birthDate;
     private String telNumber;
     private String zipcode;
     private String mainAddress;
     private String detailAddress;
-    private LocalDateTime createAt;
-    private LocalDateTime lastLoginAt;
+    private Date createAt;
+    private Date lastLoginAt;
     private String profileImage;
 
     @Builder
-    public UserEntity(Long id, String email, String password, String name, String nickname, Gender gender, LocalDateTime birthDate, String telNumber, String zipcode, String mainAddress, String detailAddress, LocalDateTime createAt, LocalDateTime lastLoginAt, String profileImage) {
+    public UserEntity(Long id, String email, String password, String name, String nickname, Gender gender, Date birthDate, String telNumber, String zipcode, String mainAddress, String detailAddress, Date createAt, Date lastLoginAt, String profileImage) {
         this.id = id;
         this.email = email;
         this.password = password;
         this.name = name;
         this.nickname = nickname;
-        this.gender = gender;
+        this.gender = gender.toString();
         this.birthDate = birthDate;
         this.telNumber = telNumber;
         this.zipcode = zipcode;
@@ -51,13 +47,14 @@ public class UserEntity {
                 .zipcode(zipcode)
                 .main(mainAddress)
                 .detail(detailAddress).build();
+
         return User.builder()
                 .id(id)
                 .email(email)
                 .password(password)
                 .name(name)
                 .nickname(nickname)
-                .gender(gender)
+                .gender(Gender.from(gender))
                 .birthDate(birthDate)
                 .telNumber(telNumber)
                 .address(address)
@@ -75,6 +72,7 @@ public class UserEntity {
                 .name(user.getName())
                 .birthDate(user.getBirthDate())
                 .nickname(user.getNickname())
+                .gender(user.getGender())
                 .telNumber(user.getTelNumber())
                 .zipcode(user.getAddress().getZipcode())
                 .mainAddress(user.getAddress().getMain())

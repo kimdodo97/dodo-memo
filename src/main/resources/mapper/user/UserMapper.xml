@@ -6,10 +6,20 @@
 <mapper namespace="com.kimdodo.ssgboard.user.infrastructure.UserMapper">
 
     <resultMap id="userMap" type="UserEntity">
-        <id property="id" column="post_id"/>
-        <result property="title" column="title"/>
-        <result property="content" column="content"/>
+        <id property="id" column="user_id"/>
+        <result property="email" column="email"/>
+        <result property="password" column="password"/>
+        <result property="name" column="name"/>
+        <result property="nickname" column="nickname"/>
+        <result property="gender" column="gender"/>
+        <result property="birthDate" column="birth_date"/>
+        <result property="telNumber" column="tel_number" />
+        <result property="zipcode" column="zipcode"/>
+        <result property="mainAddress" column="main_address"/>
+        <result property="detailAddress" column="detail_address"/>
         <result property="createAt" column="create_at"/>
+        <result property="lastLoginAt" column="last_login_at"/>
+        <result property="profileImage" column="profile_image"/>
     </resultMap>
 
     <select id="findAll" resultMap="userMap">
@@ -30,19 +40,32 @@
         SELECT * FROM user WHERE email = #{email} AND password = #{password}
     </select>
 
-    <insert id="save" parameterType="Post" useGeneratedKeys="true" keyProperty="id">
-
+    <insert id="save" parameterType="UserEntity" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO user(user_id,email,password,name,nickname,gender,birth_date,tel_number,zipcode,main_address,detail_address,create_at,last_login_at,profile_image)
+        VALUES(#{id}, #{email}, #{password}, #{name}, #{nickname},#{gender}, #{birthDate},#{telNumber}, #{zipcode}, #{mainAddress}, #{detailAddress}, #{createAt}, #{lastLoginAt}, #{profileImage})
     </insert>
 
-    <update id="update" parameterType="Post">
-        UPDATE POST
-        S
+    <update id="update" parameterType="UserEntity">
+        UPDATE user
+        SET password=#{password},
+            nickname=#{nickname},
+            tel_number=#{telNumber},
+            zipcode=#{zipcode},
+            main_address=#{mainAddress},
+            detail_address=#{detailAddress},
+            create_at=#{createAt},
+            last_login_at=#{lastLoginAt},
+            profile_image= #{profileImage}
+        WHERE user_id = #{id}
     </update>
 
-    <delete id="delete">
+    <delete id="delete" parameterType="java.lang.Long">
+        DELETE from user
+        WHERE user_id=#{id}
     </delete>
 
     <delete id="deleteAll">
+        DELETE from user
     </delete>
 
 
